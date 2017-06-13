@@ -52,8 +52,28 @@ public class AsyncTaskAPI extends BaseAPI{
 			result_json = obj.getJSONObject("data");
 			result_json.get("unsupportSns");
 			JSONArray unsupportArray = result_json.getJSONArray("unsupportSns");
+			for(int i=0;i<unsupportArray.size();i++){
+				Object ok_obj = unsupportArray.get(i);
+				if(ok_obj instanceof JSONObject){
+					String ok_sn = ((JSONObject) ok_obj).get("sn").toString();
+//					String taskId = ((JSONObject) ok_obj).get("taskId").toString();
+					log.info("ok_sn:"+ok_sn);
+					System.err.println("ok_sn:"+ok_sn);
+				}
+			}
 			JSONArray unexistArray = result_json.getJSONArray("unexistSns");
+			
+			for(int i=0;i<unexistArray.size();i++){
+				Object ok_obj = unexistArray.get(i);
+				if(ok_obj instanceof JSONObject){
+					String ok_sn = ((JSONObject) ok_obj).get("sn").toString();
+//					String taskId = ((JSONObject) ok_obj).get("taskId").toString();
+					log.info("ok_sn:"+ok_sn);
+					System.err.println("ok_sn:"+ok_sn);
+				}
+			}
 			JSONArray okArray = result_json.getJSONArray("ok");
+			
 			for(int i=0;i<okArray.size();i++){
 				Object ok_obj = okArray.get(i);
 				if(ok_obj instanceof JSONObject){
@@ -62,7 +82,6 @@ public class AsyncTaskAPI extends BaseAPI{
 					log.info("ok_sn:"+ok_sn+"  ...taskId:"+taskId);
 					System.err.println("ok_sn:"+ok_sn+"  ...taskId:"+taskId);
 				}
-				
 			}
 		}else{
 			log.error("err_code:"+code+",,,result_json:"+result);
