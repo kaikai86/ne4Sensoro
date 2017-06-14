@@ -17,7 +17,6 @@ public class HMACTools {
 		     SecretKeySpec secret_key = new SecretKeySpec(app_secret.getBytes(), "HmacSHA256");
 		     sha256_HMAC.init(secret_key);
 		     hash = Base64.encodeBase64String(sha256_HMAC.doFinal(message.getBytes()));
-		     System.err.println(hash);
 		    }
 	    catch (Exception e){
 	    	System.err.println("解析失败");

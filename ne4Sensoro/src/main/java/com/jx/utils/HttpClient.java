@@ -111,6 +111,39 @@ public class HttpClient {
 		return body;
 	}
 	
+	public static String httpSSLGet(String url,Map<String,String> headers) {
+		String body = null;
+		CloseableHttpClient httpClient = null;
+		try {
+			httpClient = new SSLClient();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		HttpGet get = new HttpGet(url);
+		get.setHeader("Content-Type", "application/json");  
+        if (headers != null) {  
+        	Set<String> keySet = headers.keySet();
+    		for(String key: keySet){
+    			get.addHeader(key, headers.get(key));
+    		}
+        }  
+		RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(10000).setConnectTimeout(10000).setSocketTimeout(10000).build();
+		CloseableHttpResponse response = null;
+        get.setConfig(config);
+		try {
+			response = httpClient.execute(get);
+			HttpEntity entity = response.getEntity();
+			body = EntityUtils.toString(entity, "UTF-8");
+		} catch (IOException e) {
+			log.error(e.toString());
+			e.printStackTrace();
+		}
+		log.debug("get response is {}", body);
+		return body;
+	}
+	
+	
+	
 	public static String httpSSLPostJson(String url, String json,Map<String,String> headers) {
 		log.debug("start post json {} with {}",url,JSON.toJSON(json));
 		String body = null;
@@ -130,7 +163,6 @@ public class HttpClient {
         }  
 		RequestConfig config = RequestConfig.custom().setConnectionRequestTimeout(10000).setConnectTimeout(10000).setSocketTimeout(10000).build();
 		CloseableHttpResponse response = null;
-//		post.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
 		StringEntity s = new StringEntity(json.toString(),"utf-8");    
         s.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
         post.setEntity(s);
