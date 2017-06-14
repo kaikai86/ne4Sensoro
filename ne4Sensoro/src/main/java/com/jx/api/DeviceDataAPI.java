@@ -1,15 +1,7 @@
 package com.jx.api;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.jx.beans.AlarmType;
-import com.jx.beans.DeviceType;
 import com.jx.config.SensoroConfig;
 import com.jx.utils.HttpClient;
 import com.jx.utils.JsonTools;

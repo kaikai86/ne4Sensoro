@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 
 import com.jx.config.SensoroConfig;
 import com.jx.utils.HMACTools;
-import com.jx.utils.JsonTools;
 
 
 public class BaseAPI {
