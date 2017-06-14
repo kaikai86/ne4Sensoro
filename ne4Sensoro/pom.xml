@@ -2,10 +2,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.zk</groupId>
   <artifactId>ne4Sensoro</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1</version>
   
   
-  <name>dc2</name>
+  <name>ne4Sensoro</name>
   <url>http://maven.apache.org</url>
   
   	<properties>
@@ -17,18 +17,20 @@
 	</properties>
 	
 	<repositories>
-        <repository>
-                <id>sonatype-nexus-staging</id>
-                <name>Sonatype Nexus Staging</name>
-                <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                <releases>
-                        <enabled>true</enabled>
-                </releases>
-                <snapshots>
-                        <enabled>true</enabled>
-                </snapshots>
-        </repository>
+        <repository>  
+           <id>oschina-repos</id>  
+           <name>Oschina Releases</name>  
+           <url>http://maven.oschina.net/content/groups/public</url>  
+       </repository> 
 	</repositories>
+	
+	<distributionManagement>    
+	    <repository>  
+           <id>sonatype-nexus-staging</id>
+           <name>Sonatype Nexus Staging</name>
+           <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url> 
+       </repository>    
+  	</distributionManagement>    
 	
 
 	<dependencies>
@@ -99,7 +101,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>dc2</finalName>
+		<finalName>ne4Sensoro</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -110,6 +112,15 @@
 					<target>${jdk.version}</target>
 				</configuration>
 			</plugin>
+			
+			<plugin>  
+		        <groupId>org.apache.maven.plugins</groupId>  
+		        <artifactId>maven-surefire-plugin</artifactId>  
+		        <version>2.4.2</version>  
+		        <configuration>  
+		          <skipTests>true</skipTests>  
+		        </configuration>  
+			</plugin>  
 			
 		</plugins>
 	</build>
