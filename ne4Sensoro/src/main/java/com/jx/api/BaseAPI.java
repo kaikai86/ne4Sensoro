@@ -16,7 +16,7 @@ public class BaseAPI {
 
 	// 请求地址
 	protected static final String BaseURL = "https://iot-api.sensoro.com";
-
+	
 	protected final SensoroConfig config;
 	
 	public BaseAPI(SensoroConfig config) {
